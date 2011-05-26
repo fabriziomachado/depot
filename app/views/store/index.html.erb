@@ -2,11 +2,15 @@
   <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>Your Pragmatic Catalog</h1>
+<h1>Your Pragmatic Catalog</h1> 
+<span><%= "(You've been accessed this store "+ pluralize( @count_access_store_index, 'time') +")" if @count_access_store_index > 5 %></span>
 
 <% @products.each do |product| %>
   <div class="entry">
-    <%= image_tag(product.image_url) %>
+    <%= link_to(image_tag(product.image_url), 
+            line_items_path(:product_id => product), 
+            html_options = {:method => :post}) %>
+
     <h3><%= product.title %></h3>
     <%= sanitize(product.description) %>
     <div class="price_line">
