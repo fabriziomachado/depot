@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  #rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  rescue_from ActiveRecord::RecordNotFound do
+    #render '/404.html', :layout => false, :status => :not_found
+     logger.error "Attempt to access invalid cart #{params[:id]}"
+     redirect_to store_url, :notice => 'Invalid Cart'
+  end
   
   private
 
