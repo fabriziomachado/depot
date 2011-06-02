@@ -77,11 +77,14 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.xml
   def destroy
-    @cart = Cart.find(params[:id])
+    @cart = current_cart
     @cart.destroy
+    
+    reset_current_cart
+    
 
     respond_to do |format|
-      format.html { redirect_to(carts_url) }
+      format.html { redirect_to(store_url, :notice => 'Your cart is currently empyt') }
       format.xml  { head :ok }
     end
   end
