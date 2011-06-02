@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
       session[:counter] = 0
     end
   end
+  
+  def reset_current_cart
+    session[:cart_id] = nil unless session[:cart_id].nil?
+  end
 
     
 end
