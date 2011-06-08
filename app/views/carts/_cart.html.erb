@@ -1,6 +1,6 @@
 <% unless cart.line_items.empty? %>
   <div class="cart_title">Your Cart</div>
-  <table>
+  <table id="table_cart">
   <%= render cart.line_items %>
 
     <tr class="total_line">
