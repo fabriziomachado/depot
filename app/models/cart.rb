@@ -19,5 +19,16 @@ class Cart < ActiveRecord::Base
   def total_items
     line_items.sum(:quantity)
   end
+  
+  def deduct_product(line_item_id)
+    current_item = LineItem.find(line_item_id)
+    if current_item.quantity > 1
+      current_item.quantity -= 1
+      current_item.save
+    else
+      current_item.destroy
+    end
+    current_item
+  end
     
 end
