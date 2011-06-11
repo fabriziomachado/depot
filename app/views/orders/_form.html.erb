@@ -1,7 +1,8 @@
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <h2><%= pluralize(@order.errors.count, "error") %>
+      prohibited this order from being saved:</h2>
 
       <ul>
       <% @order.errors.full_messages.each do |msg| %>
@@ -13,21 +14,32 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<!-- START_HIGHLIGHT -->
+    <%= f.text_field :name, :size => 40 %>
+<!-- END_HIGHLIGHT -->
   </div>
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_area :address %>
+<!-- START_HIGHLIGHT -->
+    <%= f.text_area :address, :rows => 3, :cols => 40 %>
+<!-- END_HIGHLIGHT -->
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+<!-- START_HIGHLIGHT -->
+    <%= f.email_field :email, :size => 40 %>
+<!-- END_HIGHLIGHT -->
   </div>
   <div class="field">
     <%= f.label :pay_type %><br />
-    <%= f.text_field :pay_type %>
+<!-- START_HIGHLIGHT -->
+    <%= f.select :pay_type, Order::PAYMENT_TYPES,
+                  :prompt => 'Select a payment method' %>
+<!-- END_HIGHLIGHT -->
   </div>
   <div class="actions">
-    <%= f.submit %>
+<!-- START_HIGHLIGHT -->
+    <%= f.submit 'Place Order' %>
+<!-- END_HIGHLIGHT -->
   </div>
 <% end %>

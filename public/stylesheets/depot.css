@@ -16,11 +16,6 @@
         border-bottom: 3px dotted #77d;
 }
 
-#store span {
-        font:  100% sans-serif;
-        color: #200;
-}
-
 /* Styles for products/index */
 
 #product_list table {
@@ -130,8 +125,6 @@
   margin-right: 5px;
   margin-bottom: 5px;
   float: left;
-  border: 0px;
-  
 }
 
 
@@ -234,10 +227,3 @@
   margin: 0.5em 0;
 }
 /* END:form */
-
-/* START:i18n */
-.locale {
-  float: right;
-  margin: -0.25em 0.1em;
-}
-/* END:i18n */
