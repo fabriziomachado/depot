@@ -8,6 +8,7 @@ gem 'rake', '0.8.7'
 
 gem 'sqlite3'
 gem 'jquery-rails'
+gem 'will_paginate', '>= 3.0.pre'
 
 # Use unicorn as the web server
 # gem 'unicorn'
