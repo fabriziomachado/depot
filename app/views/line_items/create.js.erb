@@ -1,3 +1,7 @@
+$("#notice").each(function(){  
+        $("#notice").css("display","none");  
+    });  
+
 $("#cart").html('<%= escape_javascript(render(@cart)) %>');
 $("#current_item").effect("highlight", {}, 100);
 if( $('#table_cart tr').length == 1 ) $("#cart").show("blind", { direction: "vertical" }, 1000);
