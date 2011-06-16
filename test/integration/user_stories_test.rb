@@ -44,7 +44,9 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal "dave@example.com", order.email
     assert_equal "Check",            order.pay_type
     
+    order.ship_date = Time.now
     assert_equal ship_date_expected, order.ship_date.to_date  ### new line
+    
     
     assert_equal 1, order.line_items.size
     line_item = order.line_items[0]
