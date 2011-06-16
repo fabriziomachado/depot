@@ -1,6 +1,7 @@
-$("#notice").each(function(){  
-        $("#notice").css("display","none");  
-    });  
+//$("#notice").each(function(){  
+//        $("#notice").css("display","none");  
+//    });  
+$("#notice").hide();
 
 $("#cart").html('<%= escape_javascript(render(@cart)) %>');
 $("#current_item").effect("highlight", {}, 100);
