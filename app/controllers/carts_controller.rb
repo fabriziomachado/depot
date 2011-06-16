@@ -66,6 +66,7 @@ rescue_from ActiveRecord::RecordNotFound do |e|
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
+        Notifier.order_shipped(@order).deliver unless @order.ship_date.nil?
         format.html { redirect_to(@cart, :notice => 'Cart was successfully updated.') }
         format.xml  { head :ok }
       else
