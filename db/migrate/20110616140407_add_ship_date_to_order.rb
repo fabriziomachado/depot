@@ -1,6 +1,6 @@
 class AddShipDateToOrder < ActiveRecord::Migration
   def self.up
-    add_column :orders, :ship_date, :date_time
+    add_column :orders, :ship_date, :datetime
   end
 
   def self.down
