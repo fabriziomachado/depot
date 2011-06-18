@@ -1,14 +1,17 @@
 class User < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
+
+  validate :password_must_be_presente
+
   
   attr_reader :password
   attr_accessor :password_confirmation
   
-  validate :password_must_be_presente
+  after_destroy :ensure_an_admin_remains
 
 
- def User.authenticate(name, password)
+  def User.authenticate(name, password)
     if user = find_by_name(name)
       if user.hashed_password == encrypt_password(password, user.salt)
         user
@@ -28,6 +31,12 @@ class User < ActiveRecord::Base
       self.hashed_password = self.class.encrypt_password(password, salt)
     end
   end
+  
+ def ensure_an_admin_remains
+   if User.count.zero? 
+     raise "Can't delete last user"
+   end  
+ end 
 
  private
     def password_must_be_presente 

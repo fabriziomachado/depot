@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(users_url, 
+        format.html { redirect_to( users_url, 
           :notice => "User #{@user.name} was successfully created.") }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -75,7 +75,13 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    
+    begin
+      @user.destroy
+      flash[:notice] = "User #{@user.name} was successfully deleted."
+    rescue Exception => e
+      flash[:notice] = e.message     
+    end    
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
